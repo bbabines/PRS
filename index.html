@@ -9,13 +9,54 @@
 <body>
     <script>
       
-      const picks = ["rock", " paper", " scissors"];
+      const picks = [" rock", " paper", " scissors"];
+      const userPick = prompt;
+      const currentMatch = '${userPick} vs ${computerPick}';
 
         function computerPlay () {
-        const pick = picks[Math.floor(Math.random()*picks.length)];
-        alert("The computer chose: " + pick);
-}
+            const pick = picks[Math.floor(Math.random()*picks.length)];
+            alert("The computer chose" + pick);
+        }
 
+        function playerSelection () {
+            let playerChoice = prompt("Please pick" + picks);
+            
+         }
+    
+        if (userPick === computerPlay) {
+            alert("Its a tie!!");
+        }
+      
+      
+ 
+      
     </script>
 </body>
 </html>
+
+<!-- This makes JS case insensitive
+{ sensitivity: 'accent' } -->
+<!-- const playerPick = ["rock", " paper", " scissors"]; -->
+
+<!-- 
+ROCK TEXT
+let rockTie = rock==rock;
+alert("You both picked rock. Tie Game!");
+
+let rockWin = rock > scissors;
+alert("You win!!");
+
+let rocklose = rock < paper;
+alert("You lost!");
+
+
+
+GAME LOGIC
+paper == paper
+paper < scissors
+paper > rock
+
+scissors == scissors
+scissors < rock
+scissors > paper -->
+
