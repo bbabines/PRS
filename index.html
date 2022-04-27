@@ -10,8 +10,9 @@
     <script>
       
       const picks = [" rock", " paper", " scissors"];
+      let playerChoice = prompt("Please pick" + picks);
       const userPick = prompt;
-      const currentMatch = '${userPick} vs ${computerPick}';
+      const currentMatch = '${playerSelection} vs ${computerPlay}';
 
         function computerPlay () {
             const pick = picks[Math.floor(Math.random()*picks.length)];
@@ -19,16 +20,45 @@
         }
 
         function playerSelection () {
-            let playerChoice = prompt("Please pick" + picks);
-            
-         }
+            return UserPick;
+        }
+
+    function compareMatch (computerPlay, playerSelection) {
+            const match = '${computerPlay} vs ${playerSelection}';
     
+        //  TIE
         if (userPick === computerPlay) {
             alert("Its a tie!!");
         }
+
+        //  ROCK
+        if (userPick === "rock") {
+            if (computerPlay === "scissors") {
+                alert("You Win!!");
+            } else {
+                alert("You lose!");
+            }
+        }
+        
+        //  PAPER
+        if (userPick === "paper") {
+            if (computerPlay === "rock") {
+                alert("You win!!");
+            }   else {
+                alert("You lose!");
+            }
+            
+        }
       
-      
- 
+        //  SCISSORS
+        if (userPick === "scissors") {
+            if (computerPlay === "paper") {
+                alert("You win!!");
+            }   else {
+                alert("You lose!");
+            }
+        }
+    }
       
     </script>
 </body>
