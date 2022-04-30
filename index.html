@@ -8,58 +8,56 @@
 </head>
 <body>
     <script>
-      
+    //  Basic const for the game.
       const picks = [" rock", " paper", " scissors"];
-      let playerChoice = prompt("Please pick" + picks);
-      const userPick = prompt;
-      const currentMatch = '${playerSelection} vs ${computerPlay}';
 
-        function computerPlay () {
+    //   The prompt works. ?Being applied to playRound f(x)?
+      const playerChoice = prompt("Please pick" + picks);
+      console.log(playerChoice);
+
+       //  Random computer pick - works in console. 
+       function computerChoice () {
             const pick = picks[Math.floor(Math.random()*picks.length)];
             alert("The computer chose" + pick);
+            return pick;
         }
 
-        function playerSelection () {
-            return UserPick;
-        }
-
-    function compareMatch (computerPlay, playerSelection) {
-            const match = '${computerPlay} vs ${playerSelection}';
-    
-        //  TIE
-        if (userPick === computerPlay) {
+        // DOES NOT WORK!
+        function playRound (computerChoice, playerChoice) {
+            //  TIE
+            if (playerChoice === computerChoice) {
             alert("Its a tie!!");
+            }
+            //  ROCK
+            if (playerChoice === "rock") {
+                if (computerChoice === "scissors") {
+                    alert("You Win!!");
+                } else {
+                    alert("You lose!");
+                }
+            }
+            //  PAPER
+            if (playerChoice === "paper") {
+                if (computerChoice === "rock") {
+                    alert("You win!!");
+                }   else {
+                    alert("You lose!");
+                }
+            }
+            //  SCISSORS
+            if (playerChoice === "scissors") {
+                if (computerChoice === "paper") {
+                    alert("You win!!");
+                }   else {
+                    alert("You lose!");
+                }
+            }
+            return playRound();
         }
 
-        //  ROCK
-        if (userPick === "rock") {
-            if (computerPlay === "scissors") {
-                alert("You Win!!");
-            } else {
-                alert("You lose!");
-            }
-        }
-        
-        //  PAPER
-        if (userPick === "paper") {
-            if (computerPlay === "rock") {
-                alert("You win!!");
-            }   else {
-                alert("You lose!");
-            }
-            
-        }
-      
-        //  SCISSORS
-        if (userPick === "scissors") {
-            if (computerPlay === "paper") {
-                alert("You win!!");
-            }   else {
-                alert("You lose!");
-            }
-        }
-    }
-      
+
+    
+
     </script>
 </body>
 </html>
@@ -67,26 +65,3 @@
 <!-- This makes JS case insensitive
 { sensitivity: 'accent' } -->
 <!-- const playerPick = ["rock", " paper", " scissors"]; -->
-
-<!-- 
-ROCK TEXT
-let rockTie = rock==rock;
-alert("You both picked rock. Tie Game!");
-
-let rockWin = rock > scissors;
-alert("You win!!");
-
-let rocklose = rock < paper;
-alert("You lost!");
-
-
-
-GAME LOGIC
-paper == paper
-paper < scissors
-paper > rock
-
-scissors == scissors
-scissors < rock
-scissors > paper -->
-
