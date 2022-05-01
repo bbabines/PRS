@@ -8,60 +8,66 @@
 </head>
 <body>
     <script>
-    //  Basic const for the game.
-      const picks = [" rock", " paper", " scissors"];
-
-    //   The prompt works. ?Being applied to playRound f(x)?
-      const playerChoice = prompt("Please pick" + picks);
-      console.log(playerChoice);
-
-       //  Random computer pick - works in console. 
-       function computerChoice () {
-            const pick = picks[Math.floor(Math.random()*picks.length)];
-            alert("The computer chose" + pick);
-            return pick;
+      // User Choice
+      const getUserChoice = (userInput) => {
+        userInput = userInput.toLowerCase();
+        if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
+          return userInput;
+        } else {
+          console.log("Error, type rock, paper, or scissors");
+        }
+      }
+      // Computer Choice
+      const getComputerChoice = () => {
+        const randomNumber = Math.floor(Math.random() * 3);
+        switch (randomNumber) {
+        case 0:
+          return "rock";
+        case 1:
+          return "paper";
+        case 2:
+          return "scissors";
+        }
+      }
+      //  Determining a winner
+      const determineWinner = (userChoice, computerChoice) => {
+        //  TIE
+        if (userChoice === computerChoice) {
+          return "It's a TIE!";
+        }  
+        //  ROCK
+        if (userChoice === "rock") {
+          if (computerChoice === "paper") {
+            return "Sorry, you LOSE! Paper beats rock.";
+          } else {
+            return "You WIN!!! Rock beats scissors!";
+          } 
+        }
+        //  PAPER
+        if (userChoice === "paper") {
+          if (computerChoice === "rock") {
+            return "You WIN!!! Paper beats rock!";
+          } else {
+            return "Sorry, you LOSE! Scissors beats paper.";
+          }
+        }
+        //  SCISSORS
+        if (userChoice === "scissors") {
+          if (computerChoice === "paper") {
+            return "You WIN!!! Scissors beats paper!";
+          } else {
+            return "Sorry, you LOSE! Rock beats scissors.";
+          }
         }
 
-        // DOES NOT WORK!
-        function playRound (computerChoice, playerChoice) {
-            //  TIE
-            if (playerChoice === computerChoice) {
-            alert("Its a tie!!");
-            }
-            //  ROCK
-            if (playerChoice === "rock") {
-                if (computerChoice === "scissors") {
-                    alert("You Win!!");
-                } else {
-                    alert("You lose!");
-                }
-            }
-            //  PAPER
-            if (playerChoice === "paper") {
-                if (computerChoice === "rock") {
-                    alert("You win!!");
-                }   else {
-                    alert("You lose!");
-                }
-            }
-            //  SCISSORS
-            if (playerChoice === "scissors") {
-                if (computerChoice === "paper") {
-                    alert("You win!!");
-                }   else {
-                    alert("You lose!");
-                }
-            }
-            return playRound();
-        }
+      }
+      
 
-
+  
+  
     
 
     </script>
 </body>
 </html>
 
-<!-- This makes JS case insensitive
-{ sensitivity: 'accent' } -->
-<!-- const playerPick = ["rock", " paper", " scissors"]; -->
