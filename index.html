@@ -8,11 +8,12 @@
 </head>
 <body>
     <script>
+      const choice = prompt("Please pick paper, rock, or scissors");
+
       // User Choice
-      const getUserChoice = (userInput) => {
-        userInput = userInput.toLowerCase();
-        if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
-          return userInput;
+      const getUserChoice = (choice) => {
+        if (choice === "rock" || choice === "scissors" || choice === "paper") {
+          return choice;
         } else {
           alert("Error, type rock, paper, or scissors");
         }
@@ -62,7 +63,7 @@
       }
       
       const playGame = () => {
-        const userChoice = getUserChoice("paper");
+        const userChoice = choice.toLowerCase();
         const computerChoice = getComputerChoice();
         console.log("You played: " + userChoice);
         console.log("The computer played: " + computerChoice);
