@@ -14,7 +14,7 @@
         if (userInput === "rock" || userInput === "scissors" || userInput === "paper") {
           return userInput;
         } else {
-          console.log("Error, type rock, paper, or scissors");
+          alert("Error, type rock, paper, or scissors");
         }
       }
       // Computer Choice
@@ -59,11 +59,17 @@
             return "Sorry, you LOSE! Rock beats scissors.";
           }
         }
-
       }
       
-
-  
+      const playGame = () => {
+        const userChoice = getUserChoice("paper");
+        const computerChoice = getComputerChoice();
+        console.log("You played: " + userChoice);
+        console.log("The computer played: " + computerChoice);
+        console.log(determineWinner(userChoice, computerChoice));
+      }
+    
+      playGame();
   
     
 
