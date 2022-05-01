@@ -61,13 +61,15 @@
           }
         }
       }
-      
+      // Goes for 5 rounds but does not keep track of score or let you choose another option each round!
       const playGame = () => {
+        for (let i = 0; i <5; i++) {
         const userChoice = choice.toLowerCase();
         const computerChoice = getComputerChoice();
-        console.log("You played: " + userChoice);
-        console.log("The computer played: " + computerChoice);
-        console.log(determineWinner(userChoice, computerChoice));
+        alert("You played: " + userChoice);
+        alert("The computer played: " + computerChoice);
+        alert(determineWinner(userChoice, computerChoice));
+        }
       }
     
       playGame();
