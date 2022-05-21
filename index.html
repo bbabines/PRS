@@ -7,76 +7,125 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-      const choice = prompt("Please pick paper, rock, or scissors");
+  <div id=container>
+    <button id="paper">Paper</button>
+    <button id="rock">Rock</button>
+    <button id="scissors">Scissors</button>
+  </div>
+    <br>
+  <div id="round">Round:</div>
+   <div id="pScore">Your score:</div>
+  <div id="cScore">Computer score:</div>
 
-      // User Choice
-      const getUserChoice = (choice) => {
-        if (choice === "rock" || choice === "scissors" || choice === "paper") {
-          return choice;
-        } else {
-          alert("Error, type rock, paper, or scissors");
-        }
-      }
-      // Computer Choice
-      const getComputerChoice = () => {
-        const randomNumber = Math.floor(Math.random() * 3);
-        switch (randomNumber) {
-        case 0:
-          return "rock";
-        case 1:
-          return "paper";
-        case 2:
-          return "scissors";
-        }
-      }
-      //  Determining a winner
-      const determineWinner = (userChoice, computerChoice) => {
-        //  TIE
-        if (userChoice === computerChoice) {
-          return "It's a TIE!";
-        }  
-        //  ROCK
-        if (userChoice === "rock") {
-          if (computerChoice === "paper") {
-            return "Sorry, you LOSE! Paper beats rock.";
-          } else {
-            return "You WIN!!! Rock beats scissors!";
-          } 
-        }
-        //  PAPER
-        if (userChoice === "paper") {
-          if (computerChoice === "rock") {
-            return "You WIN!!! Paper beats rock!";
-          } else {
-            return "Sorry, you LOSE! Scissors beats paper.";
-          }
-        }
-        //  SCISSORS
-        if (userChoice === "scissors") {
-          if (computerChoice === "paper") {
-            return "You WIN!!! Scissors beats paper!";
-          } else {
-            return "Sorry, you LOSE! Rock beats scissors.";
-          }
-        }
-      }
-      // Goes for 5 rounds but does not keep track of score or let you choose another option each round!
-      const playGame = () => {
-        for (let i = 0; i <5; i++) {
-        const userChoice = choice.toLowerCase();
-        const computerChoice = getComputerChoice();
-        alert("You played: " + userChoice);
-        alert("The computer played: " + computerChoice);
-        alert(determineWinner(userChoice, computerChoice));
-        }
-      }
-    
-      playGame();
+<script>
+
+let pScore = 0;
+let cScore = 0;
+let round = 1;
+
+const displayRound = document.getElementById("round");
+displayRound.innerHTML = `Round: ${round}`;
+
+const displayPScore = document.getElementById("pScore");
+displayPScore.innerHTML = `Your Score: ${pScore}`;
+
+const displayCScore = document.getElementById("cScore");
+displayCScore.innerHTML = `Computer Score: ${cScore}`;
+
+const buttons = document.querySelectorAll("button");
+
+
+buttons.forEach((button) => {
+  button.addEventListener("click", function () { 
+    // User Choice
+    const pInput = this.textContent;
+    alert("You played: " + pInput);
+
+    // Computer Choice 
+    const cOptions = ["Rock", "Paper", "Scissors"];
+    const cInput = cOptions[Math.floor(Math.random() * 3)];
   
-    
+  alert("The computer played: " + cInput);
+ (determineWinner(pInput, cInput));
+ updateScore();
+ if (checkWinner()) {
+  let pScore = 0;
+  let cScore = 0;
+  let round = 1;
+  updateScore();
+ };
+  });
+});
 
-    </script>
+alert("Please pick paper, rock, or scissors");
+
+
+//  Determining a winner for a ROUND
+const determineWinner = (pInput, cInput) => {
+  const currentMatch = `${pInput} vs ${cInput}`;
+
+  //  TIE
+  if (pInput === cInput) {
+    alert(`${currentMatch}: It's a TIE!`);
+    return;  
+  }  
+
+  //  ROCK
+  if (pInput === "Rock") {
+    if (cInput === "Paper") {
+      alert(`${currentMatch}: Sorry, you LOSE! Paper beats rock.`);
+      cScore++;
+      round++;
+      } else {
+        alert(`${currentMatch}: You WIN!!! Rock beats scissors!`);
+        pScore++;
+        round++;
+      } 
+    }
+
+  //  PAPER
+  if (pInput === "Paper") {
+    if (cInput === "Rock") {
+      pScore++;
+      round++;
+      alert(`${currentMatch}: You WIN!!! Paper beats rock!`);
+      } else {
+      cScore++;
+      round++;
+      alert(`${currentMatch}: Sorry, you LOSE! Scissors beats paper.`);
+      }
+    }
+  
+    //  SCISSORS
+  if (pInput === "Scissors") {
+    if (cInput === "Paper") {
+    pScore++;
+    round++;
+    alert(`${currentMatch}: You WIN!!! Scissors beats paper!`);
+    } else {
+    cScore++;
+    round++;
+    alert(`${currentMatch}: Sorry, you LOSE! Rock beats scissors.`);
+    }
+    }
+}
+// Updates round as well.
+const updateScore = () => {
+  displayCScore.innerHTML = `Computer Score: ${cScore}`;
+  displayPScore.innerHTML = `Your Score: ${pScore}`;
+  displayRound.innerHTML = `Round: ${round}`;
+};
+
+// Score RESET Does not work
+const checkWinner = () => {
+if (cScore === 5) {
+  alert("GAME OVER: You Lost!");
+} else if (pScore === 5) {
+    alert("GAME OVER: You WON, CONGRATULATIONS!!!!!!!!!!")
+  }
+};
+
+    
+</script>
 </body>
 </html>
-
