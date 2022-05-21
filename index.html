@@ -24,13 +24,13 @@ let cScore = 0;
 let round = 1;
 
 const displayRound = document.getElementById("round");
-displayRound.innerHTML = `Round: ${round}`;
+displayRound.innerHTML = "Round: " + round;
 
 const displayPScore = document.getElementById("pScore");
-displayPScore.innerHTML = `Your Score: ${pScore}`;
+displayPScore.innerHTML = "Your Score: " + pScore;
 
 const displayCScore = document.getElementById("cScore");
-displayCScore.innerHTML = `Computer Score: ${cScore}`;
+displayCScore.innerHTML = "Computer Score: " + cScore;
 
 const buttons = document.querySelectorAll("button");
 
@@ -47,15 +47,14 @@ buttons.forEach((button) => {
   
   alert("The computer played: " + cInput);
  (determineWinner(pInput, cInput));
- updateScore();
- if (checkWinner()) {
-  let pScore = 0;
-  let cScore = 0;
-  let round = 1;
   updateScore();
- };
-  });
-});
+  if (checkWinner()) {
+  pScore = 0;
+  cScore = 0;
+  round = 1;
+  updateScore();
+  };
+})});
 
 alert("Please pick paper, rock, or scissors");
 
@@ -111,18 +110,23 @@ const determineWinner = (pInput, cInput) => {
 }
 // Updates round as well.
 const updateScore = () => {
-  displayCScore.innerHTML = `Computer Score: ${cScore}`;
-  displayPScore.innerHTML = `Your Score: ${pScore}`;
-  displayRound.innerHTML = `Round: ${round}`;
+  document.getElementById("pScore").innerHTML = "Your Score: " + pScore;
+  document.getElementById("cScore").innerHTML = "Computer Score: " + cScore;
+  document.getElementById("round").innerHTML = "Round: " + round;
 };
 
 // Score RESET Does not work
 const checkWinner = () => {
-if (cScore === 5) {
+if (cScore === 5 || pScore === 5) {
+  if (pScore === 5) {
+  alert("GAME OVER: You WON, CONGRATULATIONS!!!!!!!!!!");
+  return true;
+} else {
   alert("GAME OVER: You Lost!");
-} else if (pScore === 5) {
-    alert("GAME OVER: You WON, CONGRATULATIONS!!!!!!!!!!")
-  }
+  return true;
+  }; 
+}
+
 };
 
     
